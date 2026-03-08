@@ -1,0 +1,40 @@
+# frozen_string_literal: true
+
+nodes = [
+  {
+    name: 'server',
+    hostname: 'hhamzaS',
+    ip: '192.168.56.110',
+    cpus: 2,
+    memory: 2048,
+    script: 'scripts/server.sh'
+  },
+  {
+    name: 'worker',
+    hostname: 'hhamzaSW',
+    ip: '192.168.56.111',
+    cpus: 1,
+    memory: 512,
+    script: 'scripts/worker.sh'
+  }
+]
+
+Vagrant.configure('2') do |config|
+  config.vm.box = 'generic/alpine319'
+  config.vm.box_version = '4.3.12'
+
+  nodes.each do |node|
+    config.vm.define node[:name] do |config|
+      config.vm.hostname = node[:hostname]
+      config.vm.network 'private_network', ip: node[:ip]
+
+      config.vm.provider 'virtualbox' do |vb|
+        vb.cpus = node[:cpus]
+        vb.memory = node[:memory]
+      end
+
+      config.vm.synced_folder 'vagrant/', '/vagrant'
+      config.vm.provision 'shell', path: 'scripts/setup-k3s.sh', args: node[:name]
+    end
+  end
+end
