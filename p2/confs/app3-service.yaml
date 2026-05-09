@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: app3-service
+spec:
+  selector:
+    name: app3
+  type: ClusterIP
+  ports:
+    - name: app3
+      port: 80
+      targetPort: 80

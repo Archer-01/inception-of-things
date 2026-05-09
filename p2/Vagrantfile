@@ -1,0 +1,20 @@
+# frozen_string_literal: true
+
+Vagrant.configure('2') do |config|
+  config.vm.box = 'generic/alpine319'
+  config.vm.box_version = '4.3.12'
+
+  config.vm.define 'server' do |config|
+    config.vm.hostname = 'hhamzaS'
+    config.vm.network 'private_network', ip: '192.168.56.110'
+
+    config.vm.provider 'virtualbox' do |vb|
+      vb.cpus = 2
+      vb.memory = 2048
+    end
+
+    config.vm.synced_folder 'confs/', '/vagrant'
+
+    config.vm.provision 'shell', path: './scripts/setup.sh'
+  end
+end
