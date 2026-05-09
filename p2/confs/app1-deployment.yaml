@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app1-deployment
+  labels:
+    app: app1-deployment
+spec:
+  selector:
+    matchLabels:
+      name: app1
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        name: app1
+    spec:
+      containers:
+        - name: app1
+          image: paulbouwer/hello-kubernetes:1.10
+          ports:
+            - containerPort: 80
+          env:
+            - name: MESSAGE
+              value: "Hello from app1"
+            - name: PORT
+              value: "80"
