@@ -1,0 +1,104 @@
+global:
+  hosts:
+    domain: local
+    https: false
+    gitlab:
+      name: localhost
+      https: false
+    ssh: localhost
+  ingress:
+    configureCertmanager: false
+    enabled: false
+    tls:
+      enabled: false
+  gatewayApi:
+    enabled: false
+  appConfig:
+    enableUsagePing: false
+
+installCertmanager: false
+
+certmanager:
+  installCRDs: false
+
+certmanager-issuer:
+  install: false
+  email: nobody@localhost
+
+nginx-ingress:
+  enabled: false
+
+registry:
+  enabled: false
+
+gitlab-runner:
+  install: false
+
+prometheus:
+  install: false
+
+gitlab-zoekt:
+  install: false
+
+traefik:
+  install: false
+
+openbao:
+  install: false
+
+haproxy:
+  install: false
+
+envoy-gateway:
+  install: false
+
+postgresql:
+  install: true
+  resources:
+    requests:
+      cpu: 100m
+      memory: 512Mi
+
+redis:
+  install: true
+  resources:
+    requests:
+      cpu: 50m
+      memory: 64Mi
+
+gitlab:
+  kas:
+    enabled: false
+  pages:
+    enabled: false
+  webservice:
+    minReplicas: 1
+    maxReplicas: 1
+    resources:
+      requests:
+        cpu: 300m
+        memory: 1.5Gi
+  sidekiq:
+    minReplicas: 1
+    maxReplicas: 1
+    resources:
+      requests:
+        cpu: 300m
+        memory: 1.5Gi
+  toolbox:
+    resources:
+      requests:
+        cpu: 50m
+        memory: 350Mi
+  gitaly:
+    resources:
+      requests:
+        cpu: 100m
+        memory: 200Mi
+  gitlab-shell:
+    minReplicas: 1
+    maxReplicas: 1
+
+persistent:
+  storage:
+    class: local-path
