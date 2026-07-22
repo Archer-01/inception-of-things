@@ -1,0 +1,20 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: wil-app
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/mylastresort/stamim-config.git
+    path: k8s
+    targetRevision: master
+  destination:
+    # kubernetes.default.svc = internal DNS name for the cluster's API server
+    # Always refers to the cluster Argo CD is running in (no need to specify which cluster)
+    server: https://kubernetes.default.svc
+    namespace: dev
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
