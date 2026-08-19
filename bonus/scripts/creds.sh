@@ -5,7 +5,7 @@ echo "URL:      http://localhost:${BONUS_GITLAB_PORT:-8080}"
 echo "Username: root"
 echo "Password: Ex@mp3P4ssw0rd"
 echo -n "PAT:      "
-cat "$HOME/.gitlab-token" 2>/dev/null || echo "(not created yet)"
+cat ".gitlab-token" 2>/dev/null || echo "(not created yet)"
 
 echo ""
 echo "=== ArgoCD ==="
