@@ -3,7 +3,7 @@
 set -e
 
 GITLAB_PORT="${BONUS_GITLAB_PORT:-8080}"
-TOKEN_FILE="$HOME/.gitlab-token"
+TOKEN_FILE=".gitlab-token"
 REPO_NAME="${1:-stamim-config}"
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 CONFS_DIR="$SCRIPT_DIR/../confs"

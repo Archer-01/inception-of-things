@@ -2,7 +2,7 @@
 import json, subprocess, sys, os
 
 GITLAB_PORT = os.environ.get("BONUS_GITLAB_PORT", "8080")
-TOKEN_FILE = os.path.expanduser("~/.gitlab-token")
+TOKEN_FILE = os.path.expanduser(".gitlab-token")
 REPO_NAME = sys.argv[1] if len(sys.argv) > 1 else "stamim-config"
 SED_EXPR = sys.argv[2] if len(sys.argv) > 2 else None
 ACTION = sys.argv[3] if len(sys.argv) > 3 else "update"
