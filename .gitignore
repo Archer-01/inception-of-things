@@ -1,3 +1,4 @@
 .vagrant/
 node-token
 .gitlab-token
+*/**/k3s.yaml
