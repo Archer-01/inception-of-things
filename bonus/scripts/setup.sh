@@ -11,6 +11,16 @@ GITLAB_TOKEN="stamim-gitlab-token"
 TOKEN_FILE=".gitlab-token"
 SCRIPT_DIR="$(dirname "$0")"
 
+if ! command -v kubectl > /dev/null 2>&1; then
+    echo "kubectl not found, installing..."
+    sudo apt install -y kubectl
+fi
+
+if ! command -v k3d > /dev/null 2>&1; then
+    echo "k3d not found, installing..."
+    curl -s https://raw.githubusercontent.com/k3d-io/k3d/main/install.sh | bash
+fi
+
 echo "=== Creating K3d cluster ==="
 k3d cluster create "$CLUSTER" \
     --port "$APP_PORT":80@loadbalancer
