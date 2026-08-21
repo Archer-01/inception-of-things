@@ -6,6 +6,16 @@ CLUSTER="${K3D_CLUSTER:-inception}"
 PORT="${P3_PORT:-8888}"
 ARGOCD_PORT="${P3_PORT2:-8080}"
 
+if ! command -v kubectl > /dev/null 2>&1; then
+    echo "kubectl not found, installing..."
+    sudo apt install -y kubectl
+fi
+
+if ! command -v k3d > /dev/null 2>&1; then
+    echo "k3d not found, installing..."
+    curl -s https://raw.githubusercontent.com/k3d-io/k3d/main/install.sh | bash
+fi
+
 echo "Running p3 directly on host (requires Docker + k3d)"
 # Port mapping: host:8888 -> Docker -> loadbalancer:80 -> Traefik -> Ingress -> Service -> Pod
 # Required: the subject mandates showing the Ingress works, which needs traffic to go through Traefik
