@@ -20,8 +20,8 @@ nodes = [
 ]
 
 Vagrant.configure('2') do |config|
-  config.vm.box = 'generic/alpine319'
-  config.vm.box_version = '4.3.12'
+  config.vm.box = 'ykhourba/alpine-3.24'
+  config.vm.box_version = '3.24'
 
   nodes.each do |node|
     config.vm.define node[:name] do |config|
